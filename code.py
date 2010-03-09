@@ -1,5 +1,5 @@
 import web
-import couchdb
+from couchdb.client import Server, PermanentView
 
 urls = (
     '/', 'index'
@@ -9,13 +9,13 @@ app = web.application(urls, globals())
 render = web.template.render('templates/')
 
 # connect to the database
-s = couchdb.Server()
+s = Server()
 db = s['addressbook']
 
 class index:
     def GET(self):
-        records = [db[id] for id in db]
-        return render.index(records)
+        view = PermanentView(db.resource.url + '/_design/results/_view/all', 'all')
+        return render.index(view())
 
 if __name__ == "__main__":
     app.run()

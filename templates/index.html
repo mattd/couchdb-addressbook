@@ -1,8 +1,8 @@
-$def with (records)
+$def with (view)
 
 <h2>Addressbook</h2>
 <ul>
-$for record in records:
-	<li>$record['first_name'] $record['last_name']</li>
+$for result in view:
+	<li>$result.value['first_name'] $result.value['last_name']</li>
 </ul>
 	
