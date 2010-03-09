@@ -1,0 +1,8 @@
+$def with (records)
+
+<h2>Addressbook</h2>
+<ul>
+$for record in records:
+	<li>$record['first_name'] $record['last_name']</li>
+</ul>
+	
