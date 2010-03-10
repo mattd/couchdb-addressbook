@@ -17,14 +17,16 @@ db = s['addressbook']
 class index:
     def GET(self):
         view = PermanentView(db.resource.url + '/_design/results/_view/all', 'all')
-        return render.index(view())
+        results = [row.value for row in view().rows]
+        return render.index(results)
 
     def POST(self):
         i = web.input()
         for k, v in i.items():
             if not v:
                 del i[k]
-        db[uuid4().hex] = i 
+        if i.items():
+            db[uuid4().hex] = i 
         raise web.seeother('/')
 
 if __name__ == "__main__":

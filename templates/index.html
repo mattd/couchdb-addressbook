@@ -1,9 +1,14 @@
-$def with (view)
+$def with (results)
 
 <h2>Addressbook</h2>
 <ul>
-$for result in view:
-	<li>$result.value['first_name'] $result.value['last_name']</li>
+$for person in results:
+	<li>
+		$if 'first_name' in person:
+			$person['first_name'] 
+		$if 'last_name' in person:
+			$person['last_name']
+	</li>
 </ul>
 
 <h3>Add a Person</h3>
