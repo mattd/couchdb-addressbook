@@ -21,7 +21,10 @@ class index:
 
     def POST(self):
         i = web.input()
-        db[uuid4().hex] = {'first_name': i.first_name, 'last_name': i.last_name}
+        for k, v in i.items():
+            if not v:
+                del i[k]
+        db[uuid4().hex] = i 
         raise web.seeother('/')
 
 if __name__ == "__main__":
