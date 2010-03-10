@@ -5,4 +5,16 @@ $def with (view)
 $for result in view:
 	<li>$result.value['first_name'] $result.value['last_name']</li>
 </ul>
-	
+
+<h3>Add a Person</h3>
+<form method="post" action=".">
+	<p>
+		<label for="first_name">First Name:</label>
+		<input type="text" name="first_name" />
+	</p>
+	<p>
+		<label for="last_name">Last Name:</label>
+		<input type="text" name="last_name" />
+	</p>
+	<input type="submit" value="Submit" />
+</form>
